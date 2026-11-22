@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+
+@theme {
+  --font-display: "Bricolage Grotesque", "Instrument Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --default-transition-duration: 200ms;
+  --default-transition-timing-function: ease-in-out;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #E8F0E4;
+    color: #14261C;
+    font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #E8F0E4;
+    color: #14261C;
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.cw-card {
+  background-color: #F6FAF3;
+  border: 1px solid #CFDCC8;
+  border-radius: 12px;
+  box-shadow:
+    0 1px 2px rgba(20, 38, 28, 0.04),
+    0 8px 22px rgba(20, 38, 28, 0.04);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+.cw-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 2px 4px rgba(20, 38, 28, 0.06),
+    0 12px 26px rgba(20, 38, 28, 0.07);
+}
+
+.cw-section-kicker {
+  font-size: 11px;
+  line-height: 1.25;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #5C6F62;
+}
+
+/* Custom range slider styled strictly in the CrowdWise palette */
+.cw-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  background: #CFDCC8;
+  outline: none;
+}
+
+.cw-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #1F4D3A;
+  border: 2px solid #F6FAF3;
+  box-shadow: 0 1px 4px rgba(20, 38, 28, 0.22);
+  cursor: pointer;
+  transition: background-color 200ms ease, transform 200ms ease;
+}
+
+.cw-slider::-webkit-slider-thumb:hover {
+  background: #173B2D;
+  transform: scale(1.06);
+}
+
+.cw-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #1F4D3A;
+  border: 2px solid #F6FAF3;
+  box-shadow: 0 1px 4px rgba(20, 38, 28, 0.22);
+  cursor: pointer;
+}
+
+/* Map container isolation so map panes and controls stay strictly under sticky header */
+.cw-map-container {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+}
+
+@keyframes barGrowY {
+  from {
+    transform: scaleY(0.14);
+    opacity: 0.45;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes ribbonFillX {
+  from {
+    transform: scaleX(0);
+    opacity: 0.65;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.cw-page-fade {
+  animation: pageFadeIn 150ms ease-out both;
+}
+
+.animate-bar-load {
+  transform-origin: bottom;
+  animation: barGrowY 200ms ease both;
+}
+
+.animate-ribbon-load {
+  transform-origin: left;
+  animation: ribbonFillX 360ms cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .cw-page-fade,
+  .animate-bar-load,
+  .animate-ribbon-load {
+    animation: none;
+  }
+
+  .cw-card,
+  .cw-card-hover:hover {
+    transition: none;
+    transform: none;
+  }
+}

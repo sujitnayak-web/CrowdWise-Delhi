@@ -1,0 +1,6 @@
+{
+  "name": "Linewise",
+  "description": "Editorial transit route and crowding planner with stretch-level crowding ribbons, 5 AM–11 PM hourly forecasts, and route cartography.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
